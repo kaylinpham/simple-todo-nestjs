@@ -1,5 +1,5 @@
 import { Connection } from "typeorm";
-import { Todo } from "./entity/todo.entity";
+import { Todo } from "../entity/todo.entity";
 
 export const todoProviders = [{
     provide: 'TODO_REPOSITORY',

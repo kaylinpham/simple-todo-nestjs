@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 
 import { v4 as uuid } from "uuid"
 import { CreateTodoDto, TodoDto, UpdateTodoDto } from './dto/todo.dto';
-import { Todo } from './entity/todo.entity';
+import { Todo } from '../entity/todo.entity';
 
 @Injectable()
 export class TodoService {
