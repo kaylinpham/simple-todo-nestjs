@@ -11,6 +11,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
 
+  app.enableCors()
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true, forbidNonWhitelisted: true }))
 
   const options = new DocumentBuilder().setTitle('Simple Todo API').setDescription('Simple Todo API').setVersion('1.0.0').build();
