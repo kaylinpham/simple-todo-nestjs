@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { AppUser } from "./user.entity";
 
 @Entity()
 export class Todo {
@@ -13,7 +14,13 @@ export class Todo {
     @Column({
         default: false,
     })
-    public completed: boolean;
+    completed: boolean;
+
+    @ManyToOne(type => AppUser, user => user.todos)
+    user: AppUser
+
+    @Column({ type: 'uuid' })
+    userId: string
 
     @CreateDateColumn()
     createdAt: Date;

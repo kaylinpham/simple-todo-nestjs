@@ -1,4 +1,4 @@
-import { ApiExtraModels, ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CreateTodoDto {
@@ -6,6 +6,11 @@ export class CreateTodoDto {
     @IsString()
     @ApiProperty()
     title: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @ApiProperty()
+    userId: string
 }
 
 export class UpdateTodoDto {
@@ -34,4 +39,13 @@ export class TodoDto {
 
     @ApiProperty()
     completed: boolean;
+
+    @ApiProperty()
+    userId: string
+
+    @ApiProperty()
+    createdAt: Date
+
+    @ApiProperty()
+    updatedAt: Date
 }

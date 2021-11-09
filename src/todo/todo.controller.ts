@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, ParseUUIDPipe, Post, Put, ValidationPipe } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Todo } from 'src/entity/todo.entity';
 import { CreateTodoDto, TodoDto, UpdateTodoDto } from './dto/todo.dto';
 import { TodoService } from './todo.service';
 
@@ -14,7 +15,7 @@ export class TodoController {
         type: TodoDto,
         isArray: true
     })
-    async getTodos(): Promise<TodoDto[]> {
+    async getTodos(): Promise<Todo[]> {
         return await this.todoService.getTodos();
     }
 
@@ -24,7 +25,7 @@ export class TodoController {
         type: TodoDto
     })
     @ApiNotFoundResponse({ description: 'Not found id' })
-    async getTodoById(@Param("id", new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST })) id: string): Promise<TodoDto> {
+    async getTodoById(@Param("id", new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST })) id: string): Promise<Todo> {
         const todo = await this.todoService.getTodoById(id)
 
         if (!todo) throw new NotFoundException()
@@ -33,17 +34,17 @@ export class TodoController {
     }
 
     @Post()
-    async createTodo(@Body() body: CreateTodoDto): Promise<TodoDto> {
+    async createTodo(@Body() body: CreateTodoDto): Promise<Todo> {
         return await this.todoService.createTodo(body);
     }
 
     @Put("/:id")
-    async updateTodoById(@Param("id") id: string, @Body() body: UpdateTodoDto): Promise<TodoDto> {
+    async updateTodoById(@Param("id") id: string, @Body() body: UpdateTodoDto): Promise<Todo> {
         return await this.todoService.updateTodoById(id, body);
     }
 
     @Delete("/:id")
-    async removeTodoById(@Param("id") id: string): Promise<TodoDto> {
+    async removeTodoById(@Param("id") id: string): Promise<Todo> {
         return await this.todoService.removeTodoById(id);
     }
 }

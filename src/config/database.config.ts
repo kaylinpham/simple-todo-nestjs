@@ -1,7 +1,5 @@
 // import { registerAs } from "@nestjs/config";
 // import { TypeOrmModuleOptions } from "@nestjs/typeorm"
-import { registerAs } from "@nestjs/config";
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { ConnectionOptions } from "typeorm";
 
 // export default registerAs('database', (): TypeOrmModuleOptions => ({

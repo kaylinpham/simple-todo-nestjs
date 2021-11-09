@@ -4,5 +4,10 @@ import { TodoController } from './todo.controller';
 import { todoProviders } from './todo.providers';
 import { TodoService } from './todo.service';
 
-@Module({ imports: [DatabaseModule], controllers: [TodoController], providers: [TodoService, ...todoProviders] })
+@Module({
+    imports: [DatabaseModule],
+    controllers: [TodoController],
+    providers: [TodoService, ...todoProviders],
+    exports: [TodoService]
+})
 export class TodoModule { }

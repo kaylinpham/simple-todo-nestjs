@@ -3,10 +3,12 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from 'src/config/configuration';
 import { DatabaseModule } from 'src/database/database.module';
 import { TodoModule } from 'src/todo/todo.module';
+import { UserModule } from 'src/user/user.module';
 
 
 @Module({
-  imports: [TodoModule,
+  imports: [
+    TodoModule,
     DatabaseModule,
     ConfigModule.forRoot({
       envFilePath: './src/config/env/.development.env',
@@ -14,6 +16,7 @@ import { TodoModule } from 'src/todo/todo.module';
       isGlobal: true,
       cache: true
     }),
+    UserModule
   ],
 })
 export class AppModule {
